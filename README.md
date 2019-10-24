@@ -28,4 +28,8 @@ require config.php insert here
 ```
 # plan text
 php oil refine diagram:generate > er.puml
+# pattern file type
+php oil refine diagram:generate --png > er.png
+php oil refine diagram:generate --html > er.html
+php oil refine diagram:generate --svg > er.svg
 ```

@@ -2,6 +2,7 @@
   "name": "ateliee/fuelphp-er",
   "description" : "FuelPHP 1.x ER diagram Package",
   "type": "fuel-package",
+  "keywords": ["FuelPHP", "plantuml", "er", "diagram"],
   "homepage": "https://github.com/ateliee/fuelphp-er",
   "license": "MIT",
   "authors": [
@@ -11,6 +12,7 @@
     }
   ],
   "require": {
+    "php": ">=5.4",
     "composer/installers": "~1.0",
     "ateliee/plantuml-parser": "^0.0.1",
     "jawira/plantuml": "^1.25"

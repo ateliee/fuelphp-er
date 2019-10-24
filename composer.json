@@ -1,0 +1,16 @@
+{
+  "name": "ateliee/fuelphp-er",
+  "description" : "FuelPHP 1.x ER diagram Package",
+  "type": "fuel-package",
+  "homepage": "https://github.com/ateliee/fuelphp-er",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ateliee",
+      "email": "info@ateliee.com"
+    }
+  ],
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}

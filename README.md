@@ -1,5 +1,9 @@
 # Fuelphp generate ER diagram
 
+このパッケージはFuelphpのモデルから自動でER図を生成するパッケージです。
+
+全モジュールも含め、PlantUMLにて出力されるので設計書を作る作業がなくなります。
+
 Fuelphp package auto generation ER diagram from model setting.
 
 ## usage

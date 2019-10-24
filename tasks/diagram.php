@@ -173,7 +173,7 @@ HELP;
 				$properties = $model::properties();
 				foreach($primary_keys as $name){
 					$val = $properties[$name];
-					$text = isset($val['label']) && ($val['label'] != '') ? $val['label'] : $name;
+					$text = (isset($val['label']) && ($val['label'] != '') ? $val['label'].' : ' : '').$name;
 					$entity->add(new PUMLStr('+ '.$text.' [PK]'));
 				}
 				$entity->add(new PUMLStr('--'));
@@ -181,7 +181,7 @@ HELP;
 					if(in_array($name, $primary_keys)){
 						continue;
 					}
-					$text = isset($val['label']) && ($val['label'] != '') ? $val['label'] : $name;
+					$text = (isset($val['label']) && ($val['label'] != '') ? $val['label'].' : ' : '').$name;
 					$entity->add(new PUMLStr($text));
 				}
 

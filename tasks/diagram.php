@@ -58,6 +58,11 @@ class Diagram
 Description:
   Run scan model dir, generate plantUML diagram file(.puml) for model class.
 
+Runtime options:
+  --png       # Output png file
+  --svg       # Output svg file
+  --html      # Output html file
+  
 Commands:
   php oil refine diagram:generate
   php oil refine diagram:help
@@ -75,13 +80,69 @@ HELP;
 	 */
 	public static function generate()
 	{
-		$output = 'file';
+		$output = 'plane';
 		if(\Cli::option('png', false)) {
 			$output = 'png';
 		}else if(\Cli::option('svg', false)){
 			$output = 'svg';
+		}else if(\Cli::option('html', false)){
+			$output = 'html';
 		}
 
+		$plantuml = static::generate_plantuml();
+
+		if($output == 'plane'){
+			echo $plantuml;
+			exit;
+		}
+
+		// tmpフォルダに出力
+		$tmpfile = static::output_tmpfile($plantuml);
+		if(!$tmpfile){
+			\Cli::write('create failed tmpfile.', 'red');
+			exit();
+		}
+
+		$filename = pathinfo($tmpfile, PATHINFO_FILENAME).'.'.$output;
+		$output_dir = sys_get_temp_dir();
+		$path = VENDORPATH.'bin/plantuml';
+		$command = $path.' '.$tmpfile.' -t'.$output.' -o'.$output_dir;
+
+		shell_exec($command);
+
+		$path = $output_dir.DS.$filename;
+		if(!file_exists($path)){
+			\Cli::write('create failed output tmpfile.', 'red');
+			exit();
+		}
+		readfile($path);
+		exit();
+	}
+
+	/**
+	 * tmp fileに出力しパスを取得
+	 *
+	 * @param string $str
+	 * @return string|null
+	 */
+	protected static function output_tmpfile($str){
+		$tmpfname = tempnam(sys_get_temp_dir(), "fuelphp-er-").'.puml';
+		if($temp = fopen($tmpfname, 'a')){
+			fwrite($temp, $str);
+			fseek($temp, 0);
+
+			fclose($temp);
+			return $tmpfname;
+		}
+		return null;
+	}
+
+	/**
+	 * PlantUML出力
+	 *
+	 * @return string
+	 */
+	protected static function generate_plantuml(){
 		/**
 		 * @var Modelmap[] $modelmaps
 		 */
@@ -149,6 +210,6 @@ HELP;
 		}
 
 		$plant_uml = new PUMLParser();
-		echo $plant_uml->output($uml);
+		return $plant_uml->output($uml);
 	}
 }

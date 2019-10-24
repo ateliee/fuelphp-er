@@ -20,7 +20,7 @@ require config.php insert here
 ```
  'packages' => array(
     'orm',
-    'er'
+    'fuelphp-er'
  ),
 ```
 

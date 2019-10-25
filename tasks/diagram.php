@@ -61,7 +61,6 @@ Description:
 Runtime options:
   --png       # Output png file
   --svg       # Output svg file
-  --html      # Output html file
   
 Commands:
   php oil refine diagram:generate

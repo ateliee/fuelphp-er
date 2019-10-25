@@ -84,8 +84,8 @@ HELP;
 			$output = 'png';
 		}else if(\Cli::option('svg', false)){
 			$output = 'svg';
-		}else if(\Cli::option('html', false)){
-			$output = 'html';
+//		}else if(\Cli::option('html', false)){
+//			$output = 'html';
 		}
 
 		$plantuml = static::generate_plantuml();
